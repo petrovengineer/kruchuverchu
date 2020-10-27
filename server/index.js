@@ -1,7 +1,10 @@
 var express = require('express');
+var cors = require('cors')
 var app = express();
 var jwt = require('express-jwt');
 var jwks = require('jwks-rsa');
+
+app.use(cors())
 
 var port = process.env.PORT || 4000;
 
