@@ -8,8 +8,8 @@ ReactDOM.render(
     domain="dev-pkkepqar.eu.auth0.com"
     clientId="C7VYzWpW1VRAO6CuOWomd1i3w1st0Xnh"
     redirectUri={window.location.origin}
-    audience="https://dev-pkkepqar.eu.auth0.com/api/v2/"
-    scope="read:current_user update:current_user_metadata"
+    audience="kruchuverchu.com"
+    scope="read:messages"
   >
     <App />
   </Auth0Provider>,

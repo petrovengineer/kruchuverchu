@@ -1,8 +1,9 @@
-var express = require('express');
-var cors = require('cors')
-var app = express();
-var jwt = require('express-jwt');
-var jwks = require('jwks-rsa');
+const express = require('express');
+const cors = require('cors')
+const app = express();
+const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwks = require('jwks-rsa');
 
 app.use(cors())
 
@@ -31,6 +32,14 @@ app.get('/api/public', function(req, res) {
 app.get('/api/private', jwtCheck, function(req, res) {
   res.json({
     message: 'Hello from a private endpoint! You need to be authenticated to see this.'
+  });
+});
+
+const checkScopes = jwtAuthz([ 'read:messages' ]);
+
+app.get('/api/private-scoped', jwtCheck, checkScopes, function(req, res) {
+  res.json({
+    message: 'Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this.'
   });
 });
 
